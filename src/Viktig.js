@@ -8,16 +8,16 @@ function Viktig() {
   return (
     <Container className={style.info_container}>
       <Box className={style.info_box}>
-        <Typography variant="h4" className={style.info_title}>
+        <Typography className={style.info_title} variant="h4">
           Denna provberäkning avgör inte om du får ekonomiskt bistånd.
         </Typography>
-        <Typography variant="body1" className={style.info_text}>
+        <Typography className={style.info_text} variant="body1">
           Denna applikation avgör inte om du har rätt till ekonomiskt bistånd.
           Eftersom provberäkningen inte tar hänsyn till alla faktorer som appen
           tar hänsyn till, kan resultatet blir annorlunda när du lämnar in en
           ansökan hos Socialtjänsten.
         </Typography>
-        <Typography variant="body1" className={style.info_text}>
+        <Typography className={style.info_text} variant="body1">
           För att veta om du kan få ekonomiskt bistånd måste du kontakta
           socialtjänsten i din kommun. Du har alltid rätt att ansöka om
           ekonomiskt bistånd och få din sak provad av Socialtjänsten.
