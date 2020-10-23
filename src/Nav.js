@@ -6,6 +6,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Viktig from "./Viktig";
+import { NavStyle } from "./Styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,13 +63,14 @@ export default function HorizontalLabelPositionBelowStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
+  const style = NavStyle();
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1); //setActiveStep(activeStep + 1)
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1); //setActiveStep(activeStep - 1)
   };
 
   const handleReset = () => {
@@ -110,7 +112,7 @@ export default function HorizontalLabelPositionBelowStepper() {
                 <Button
                   disabled={activeStep === 0}
                   onClick={handleBack}
-                  className={classes.backButton}
+                  className={style.back_button}
                 >
                   Back
                 </Button>
@@ -118,6 +120,7 @@ export default function HorizontalLabelPositionBelowStepper() {
                   variant="contained"
                   color="secondary"
                   onClick={handleNext}
+                  className={style.next_button}
                 >
                   {activeStep === steps.length - 1 ? "Finish" : "Next"}
                 </Button>

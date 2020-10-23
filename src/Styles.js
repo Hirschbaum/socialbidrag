@@ -101,3 +101,17 @@ export const InfoStyle = makeStyles(() => ({
     left: "40%",
   },
 }));
+
+//------------- Nav.js ------------------------ the API's page with stepper in it
+export const NavStyle = makeStyles(() => ({
+  next_button: {
+    position: "absolute",
+    bottom: "30px",
+    left: "50vw",
+  },
+  back_button: {
+    position: "absolute",
+    bottom: "30px",
+    left: "40vw",
+  },
+}));

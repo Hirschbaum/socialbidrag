@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Container, Typography } from "@material-ui/core";
+import { Box, Container, Typography } from "@material-ui/core";
 import { InfoStyle } from "./Styles";
 
 function Viktig() {
@@ -23,10 +23,11 @@ function Viktig() {
           ekonomiskt bistånd och få din sak provad av Socialtjänsten.
         </Typography>
       </Box>
-
+      {/*
       <Button variant="contained" className={style.info_button}>
         Jag förstår
       </Button>
+     */}
     </Container>
   );
 }
