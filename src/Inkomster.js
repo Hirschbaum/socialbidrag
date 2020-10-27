@@ -16,10 +16,15 @@ const useStyles = makeStyles((theme) => ({
 function Inkomster() {
   const style = incomeStyle();
   const classes = useStyles();
-  const [salary, setSalary] = useState("");
-  const handleChange = (event) => {
-    setSalary(event.target.value);
-  };
+  const [income, setIncome] = useState({
+    salary: "",
+    unemployment: "",
+    sick: "",
+    sickleave: "",
+    parentalleave: "",
+  });
+
+  console.log(income);
 
   return (
     <Container>
@@ -37,28 +42,47 @@ function Inkomster() {
           <TextField
             id="salary"
             label="Lön"
-            onChange={handleChange}
+            onChange={(e) => setIncome({ ...income, salary: e.target.value })}
             type="number"
-            value={salary}
+            value={income.salary}
             variant="outlined"
           />
           <TextField
             id="unemployment"
             label="Arbetslöshetsersättning"
+            onChange={(e) =>
+              setIncome({ ...income, unemployment: e.target.value })
+            }
             type="number"
+            value={income.unemployment}
             variant="outlined"
           />
           <TextField
             id="sick"
             label="Sjuk- och aktivitetsersättning"
+            onChange={(e) => setIncome({ ...income, sick: e.target.value })}
             type="number"
+            value={income.sick}
             variant="outlined"
           />
-          <TextField id="sickleave" label="Sjukpenning" variant="outlined" />
+          <TextField
+            id="sickleave"
+            label="Sjukpenning"
+            type="number"
+            value={income.sickleave}
+            onChange={(e) =>
+              setIncome({ ...income, sickleave: e.target.value })
+            }
+            variant="outlined"
+          />
           <TextField
             id="parentalleave"
             label="Föräldrapening"
             type="number"
+            value={income.parentalleave}
+            onChange={(e) =>
+              setIncome({ ...income, parentalleave: e.target.value })
+            }
             variant="outlined"
           />
         </div>
