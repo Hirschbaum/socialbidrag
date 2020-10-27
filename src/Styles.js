@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 //------------- Home.js ------------------------ the start Home page with many buttons
-export const HomeStyle = makeStyles(() => ({
+export const homeStyle = makeStyles(() => ({
   home_container: {
     position: "absolute",
     width: "100vw",
@@ -9,7 +9,7 @@ export const HomeStyle = makeStyles(() => ({
   },
   headLine: {
     height: "10vh",
-    width: "100vw",
+    width: "80vw",
     margin: "0 auto",
   },
   hbg: {
@@ -26,14 +26,11 @@ export const HomeStyle = makeStyles(() => ({
   home_box: {
     height: "70vh",
     width: "100vw",
-    //display: "flex",
-    //justifyContent: "space-between",
     margin: "0 auto",
     position: "relative",
-    //left: "0.2em",
   },
   btn: {
-    width: "24vw",
+    width: "24vw", //before: 24vw, ide kell az a kiszámolós
     height: "auto",
     backgroundColor: "#fff",
     color: "rgb(174, 11, 5)",
@@ -47,7 +44,7 @@ export const HomeStyle = makeStyles(() => ({
     margin: "0.5rem",
   },
   btn_main: {
-    width: "24vw", //before 48vw
+    width: "24vw", //before 48vw, 24vw
     height: "auto",
     backgroundColor: "rgb(203, 0, 80)", //pinky red button
     color: "#fff",
@@ -65,7 +62,7 @@ export const HomeStyle = makeStyles(() => ({
 
 //------------- Info.js ------------------------ the second page with info about how it works
 
-export const InfoStyle = makeStyles(() => ({
+export const infoStyle = makeStyles(() => ({
   info_container: {
     width: "100vw",
     height: "80vh",
@@ -103,7 +100,7 @@ export const InfoStyle = makeStyles(() => ({
 }));
 
 //------------- Nav.js ------------------------ the API's page with stepper in it
-export const NavStyle = makeStyles(() => ({
+export const navStyle = makeStyles(() => ({
   next_button: {
     position: "absolute",
     bottom: "30px",
@@ -113,5 +110,18 @@ export const NavStyle = makeStyles(() => ({
     position: "absolute",
     bottom: "30px",
     left: "40vw",
+  },
+}));
+
+//Inkomster.js
+export const incomeStyle = makeStyles(() => ({
+  income_title: {
+    margin: "1rem 0",
+    fontSize: "1.4rem",
+    fontWeight: "600",
+    color: "rgb(174, 11, 5)",
+  },
+  income_text: {
+    margin: "1rem 2rem 0rem 1 rem",
   },
 }));

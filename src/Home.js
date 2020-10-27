@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Container, Typography } from "@material-ui/core";
-import { HomeStyle } from "./Styles";
+import { homeStyle } from "./Styles";
 
 function Home(props) {
-  const style = HomeStyle();
+  const style = homeStyle();
 
   const handleApi = () => {
     props.setApiOn(true);

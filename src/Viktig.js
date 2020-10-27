@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Container, Typography } from "@material-ui/core";
-import { InfoStyle } from "./Styles";
+import { infoStyle } from "./Styles";
 
 function Viktig() {
-  const style = InfoStyle();
+  const style = infoStyle();
 
   return (
     <Container className={style.info_container}>

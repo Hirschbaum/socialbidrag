@@ -9,7 +9,8 @@ import Typography from "@material-ui/core/Typography";
 //importing each side of the API as a component:
 import Info from "./Info";
 import Viktig from "./Viktig";
-import { NavStyle } from "./Styles";
+import Inkomster from "./Inkomster";
+import { navStyle } from "./Styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +31,6 @@ function getSteps() {
     "Info",
     "Viktig",
     "Inkomster",
-    "Inkomster",
     "Familj",
     "Utkomster",
     "Resultat",
@@ -46,7 +46,7 @@ function getStepContent(stepIndex) {
     case 1:
       return <Viktig />;
     case 2:
-      return "Inkomster";
+      return <Inkomster />;
     case 3:
       return "Familjeförhållande";
     case 4:
@@ -66,7 +66,7 @@ export default function HorizontalLabelPositionBelowStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
-  const style = NavStyle();
+  const style = navStyle();
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1); //setActiveStep(activeStep + 1)

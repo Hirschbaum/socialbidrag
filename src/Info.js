@@ -1,13 +1,13 @@
 import React from "react";
 import { Box, Container, Typography } from "@material-ui/core";
-import { InfoStyle } from "./Styles";
+import { infoStyle } from "./Styles";
 
 // -----IF YOU UPDATE numbers, riksnormen: -----------------------------------------------------------
 //------------- Change the date (DD. month YYYY) in the text below, when riksnormen have been updated.
 //----------------------------------------------------------------------------------------------------
 
 function Info() {
-  const style = InfoStyle();
+  const style = infoStyle();
 
   return (
     <Container className={style.info_container}>
