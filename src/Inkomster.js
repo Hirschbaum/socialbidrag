@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Container, TextField, Typography } from "@material-ui/core";
 import { incomeStyle } from "./Styles";
 import { makeStyles } from "@material-ui/core/styles";
@@ -13,10 +13,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-/*const calculateIncome = (props) => {
-  return <Typography variant="body1">props.totalIncome</Typography>;
-};*/
-
 function Inkomster(props) {
   const style = incomeStyle();
   const classes = useStyles();
@@ -27,44 +23,12 @@ function Inkomster(props) {
     sickleave: 0,
     parentalleave: 0,
   });
-  let totalIncome = useRef(0);
 
   const reduceIncome = (props) => {
     Object.keys(props).reduce((acc, value) => acc + props[value]);
   };
 
-  useEffect(() => {
-    totalIncome.current = reduceIncome(income);
-  });
-
-  /*const calculateTotal = (income) => {
-    return Object.entries(income).reduce((finalValue, [key, value]) => {
-      if (value === "") {
-        return finalValue;
-      }
-      return finalValue + value;
-    }, 0);
-  };
-
-  const handleTotal = (e) => {
-    const { value, name } = e.target; // gets the name and value from input
-    const parsedValue = value === "" ? "" : parseFloat(value); // parses the value as a number or if empty treats it as empty string ""
-
-    setIncome((prevState) => {
-      const updatedIncome = {
-        ...prevState.income,
-        [name]: parsedValue,
-      };
-      // calculates the new total from updated income:
-      const newTotal = calculateTotal(updatedIncome);
-      return {
-        ...income,
-        total: newTotal,
-      };
-    });
-  };*/
-
-  console.log(income, totalIncome);
+  console.log(income);
 
   return (
     <Container>
@@ -133,10 +97,7 @@ function Inkomster(props) {
           />
         </div>
       </form>
-      <Typography variant="body1" inputref={totalIncome}>
-        {" "}
-        Total: {totalIncome.current}
-      </Typography>
+      <Typography variant="body1"> Total:</Typography>
     </Container>
   );
 }
