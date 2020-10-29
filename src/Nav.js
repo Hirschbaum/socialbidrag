@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core";
 import Stepper from "@material-ui/core/Stepper";
@@ -6,13 +7,12 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-//importing each side of the API as a component:
+// importing each side of the API as a component:
 import Info from "./Info";
 import Viktig from "./Viktig";
 import Inkomster from "./Inkomster";
+// instead of CSS:
 import { navStyle } from "./Styles";
-
-//let totalIncome = 0; //props used in Inkomster
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,14 +41,14 @@ function getSteps() {
 }
 
 //components underneath the stepper navigation
-function getStepContent(stepIndex) {
+function getStepContent(stepIndex, income, setIncome) {
   switch (stepIndex) {
     case 0:
       return <Info />;
     case 1:
       return <Viktig />;
     case 2:
-      return <Inkomster />;
+      return <Inkomster income={income} setIncome={setIncome} />;
     case 3:
       return "Familjeförhållande";
     case 4:
@@ -69,6 +69,15 @@ export default function HorizontalLabelPositionBelowStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
   const style = navStyle();
+
+  /*states for the income in Inkomster component */
+  const [income, setIncome] = useState({
+    salary: 0,
+    unemployment: 0,
+    sick: 0,
+    sickleave: 0,
+    parentalleave: 0,
+  });
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1); //setActiveStep(activeStep + 1)
@@ -115,7 +124,8 @@ export default function HorizontalLabelPositionBelowStepper() {
                 component="span"
                 variant="body2"
               >
-                {getStepContent(activeStep)}
+                {getStepContent(activeStep, income, setIncome)}{" "}
+                {/*in getStepContent: sends the states as well */}
               </Typography>
               <Container>
                 <Button
