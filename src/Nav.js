@@ -12,6 +12,8 @@ import Viktig from "./Viktig";
 import Inkomster from "./Inkomster";
 import { navStyle } from "./Styles";
 
+//let totalIncome = 0; //props used in Inkomster
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",

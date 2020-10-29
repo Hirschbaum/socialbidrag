@@ -64,7 +64,7 @@ export const homeStyle = makeStyles(() => ({
 
 export const infoStyle = makeStyles(() => ({
   info_container: {
-    width: "100vw",
+    width: "80vw",
     height: "80vh",
     margin: "0",
     position: "relative",
@@ -122,6 +122,7 @@ export const incomeStyle = makeStyles(() => ({
     color: "rgb(174, 11, 5)",
   },
   income_text: {
-    margin: "1rem 2rem 0rem 1 rem",
+    margin: "1rem 2rem 2rem 1 rem",
+    width: "50vw",
   },
 }));
