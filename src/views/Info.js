@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Typography } from "@material-ui/core";
-import { infoStyle } from "./Styles";
+import { infoStyle } from "../Styles";
 
 // -----IF YOU UPDATE numbers, riksnormen: -----------------------------------------------------------
 //------------- Change the date (DD. month YYYY) in the text below, when riksnormen have been updated.
@@ -42,12 +42,6 @@ function Info() {
           aktier, påverkar det din rätt till ekonomiskt bistånd.
         </Typography>
       </Box>
-
-      {/*
-      <Button variant="contained" className={style.info_button}>
-        Jag förstår
-      </Button>
- */}
     </Container>
   );
 }

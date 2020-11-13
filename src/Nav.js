@@ -1,16 +1,23 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Container } from "@material-ui/core";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-// importing each side of the API as a component:
-import Info from "./Info";
-import Viktig from "./Viktig";
-import Inkomster from "./Inkomster";
+
+//Material UI
+import {
+  Button,
+  Container,
+  makeStyles,
+  Step,
+  StepLabel,
+  Stepper,
+  Typography,
+} from "@material-ui/core";
+
+// importing each view of the API:
+import Info from "./views/Info";
+import Viktig from "./views/Viktig";
+import Inkomster from "./views/Inkomster";
+import Familj from "./views/Familj";
+
 // instead of CSS:
 import { navStyle } from "./Styles";
 
@@ -67,7 +74,7 @@ function getStepContent(
         />
       );
     case 3:
-      return "Familjeförhållande";
+      return <Familj />;
     case 4:
       return "Utkomster";
     case 5:
@@ -108,17 +115,17 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     setIncomeTotal(sum);
   };
 
-  //useEffect doesnt work here neither:
+  //useEffect works, incomeTotal used in Inkomster:
   useEffect(() => {
     incomeTotalHandler(income);
   }, [income]);
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1); //setActiveStep(activeStep + 1)
+    setActiveStep(activeStep + 1); //setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1); //setActiveStep(activeStep - 1)
+    setActiveStep(activeStep - 1); // setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   const handleReset = () => {
@@ -127,7 +134,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
 
   return (
     <Container className={classes.root} {...props}>
-      {/* steps in the stepper navigation on each API page: */}
+      {/* steps in the Stepper navigation on each API page: */}
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
