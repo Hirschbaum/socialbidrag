@@ -2,6 +2,7 @@ import React from "react";
 import { Container, TextField, Typography } from "@material-ui/core";
 import { incomeStyle } from "./Styles";
 import { makeStyles } from "@material-ui/core/styles";
+import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,20 +13,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Inkomster(props) {
+const Inkomster = (props) => {
   const style = incomeStyle();
   const classes = useStyles();
 
-  /*
-  const reduceIncome = (props.income) => {
-    Object.keys(props.income).reduce(
-      (acc, value) => acc + props.income[value],
-      0
-    );
-  };
-
-  console.log(reduceIncome());*/
-  console.log(props.income);
+  console.log(props.income, props.incomeTotal); //undefined, undefined
 
   return (
     <Container>
@@ -44,64 +36,45 @@ function Inkomster(props) {
             id="salary"
             label="Lön"
             name="salary"
-            onChange={(e) => {
-              props.setIncome({ ...props.income, salary: e.target.value });
-              //reduceIncome();
-              //setTotal({ total: total + parseInt(e.target.value) });
-            }}
+            onChange={props.incomeHandler}
             type="number"
-            value={props.income.salary}
             variant="outlined"
           />
           <TextField
             id="unemployment"
             label="Arbetslöshetsersättning"
             name="unemployment"
-            onChange={(e) =>
-              props.setIncome({ ...props.income, unemployment: e.target.value })
-            }
+            onChange={props.incomeHandler}
             type="number"
-            value={props.income.unemployment}
             variant="outlined"
           />
           <TextField
             id="sick"
             label="Sjuk- och aktivitetsersättning"
-            onChange={(e) =>
-              props.setIncome({ ...props.income, sick: e.target.value })
-            }
+            onChange={props.incomeHandler}
             type="number"
-            value={props.income.sick}
             variant="outlined"
           />
           <TextField
             id="sickleave"
             label="Sjukpenning"
             type="number"
-            value={props.income.sickleave}
-            onChange={(e) =>
-              props.setIncome({ ...props.income, sickleave: e.target.value })
-            }
+            onChange={props.incomeHandler}
             variant="outlined"
           />
           <TextField
             id="parentalleave"
             label="Föräldrapening"
             type="number"
-            value={props.income.parentalleave}
-            onChange={(e) =>
-              props.setIncome({
-                ...props.income,
-                parentalleave: e.target.value,
-              })
-            }
+            onChange={props.incomeHandler}
             variant="outlined"
           />
         </div>
       </form>
-      <Typography variant="body1"> Total: </Typography>
+      <Typography variant="body1"> Total: {props.incomeTotal} </Typography>{" "}
+      {/*Total: {props.incomeTotal} */}
     </Container>
   );
-}
+};
 
 export default Inkomster;

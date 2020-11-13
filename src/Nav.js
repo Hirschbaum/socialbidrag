@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core";
 import Stepper from "@material-ui/core/Stepper";
@@ -34,21 +34,21 @@ function getSteps() {
     "Viktig",
     "Inkomster",
     "Familj",
-    "Utkomster",
+    "Utgifter",
     "Resultat",
     "Länkar",
   ];
 }
 
 //components underneath the stepper navigation
-function getStepContent(stepIndex, income, setIncome) {
+function getStepContent(stepIndex, props) {
   switch (stepIndex) {
     case 0:
       return <Info />;
     case 1:
       return <Viktig />;
     case 2:
-      return <Inkomster income={income} setIncome={setIncome} />;
+      return <Inkomster {...props} />;
     case 3:
       return "Familjeförhållande";
     case 4:
@@ -64,20 +64,37 @@ function getStepContent(stepIndex, income, setIncome) {
   }
 }
 
-export default function HorizontalLabelPositionBelowStepper() {
+export default function HorizontalLabelPositionBelowStepper(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
   const style = navStyle();
 
   /*states for the income in Inkomster component */
-  const [income, setIncome] = useState({
-    salary: 0,
-    unemployment: 0,
-    sick: 0,
-    sickleave: 0,
-    parentalleave: 0,
-  });
+  const [income, setIncome] = useState({});
+
+  /*function to update income state */
+  function incomeHandler(e) {
+    let incomeData = { ...income, [e.target.name]: e.target.value };
+    setIncome(incomeData);
+  }
+
+  /*state for the total income in Inkomster component*/
+  const [incomeTotal, setIncomeTotal] = useState(0);
+
+  /*to update the incomeTotal */
+  const incomeTotalHandler = (obj) => {
+    let objClone = { ...obj };
+    let sum = Object.values(objClone)
+      .filter((prev) => prev !== "") //otherwise the total sum is NaN if the user delete an input
+      .reduce((prev, current) => parseInt(prev) + parseInt(current), 0);
+    setIncomeTotal(sum);
+  };
+
+  //useEffect doesnt work here neither:
+  useEffect(() => {
+    incomeTotalHandler(income);
+  }, [income]);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1); //setActiveStep(activeStep + 1)
@@ -92,7 +109,7 @@ export default function HorizontalLabelPositionBelowStepper() {
   };
 
   return (
-    <Container className={classes.root}>
+    <Container className={classes.root} {...props}>
       {/* steps in the stepper navigation on each API page: */}
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
@@ -124,7 +141,15 @@ export default function HorizontalLabelPositionBelowStepper() {
                 component="span"
                 variant="body2"
               >
-                {getStepContent(activeStep, income, setIncome)}{" "}
+                {getStepContent(
+                  activeStep,
+                  income,
+                  setIncome,
+                  incomeHandler,
+                  incomeTotal,
+                  setIncomeTotal,
+                  incomeTotalHandler
+                )}{" "}
                 {/*in getStepContent: sends the states as well */}
               </Typography>
               <Container>
