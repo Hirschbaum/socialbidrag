@@ -17,6 +17,8 @@ import Info from "./views/Info";
 import Viktig from "./views/Viktig";
 import Inkomster from "./views/Inkomster";
 import Familj from "./views/Familj";
+import Utgifter from "./views/Utgifter";
+import Resultat from "./views/Resultat";
 
 // instead of CSS:
 import { navStyle } from "./Styles";
@@ -76,9 +78,11 @@ function getStepContent(
     case 3:
       return <Familj />;
     case 4:
-      return "Utkomster";
+      return <Utgifter />;
     case 5:
-      return "Resultat";
+      return (
+        <Resultat incomeTotal={incomeTotal} setIncomeTotal={setIncomeTotal} />
+      );
     case 6:
       return "Länkar";
     case 7:
