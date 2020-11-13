@@ -17,8 +17,7 @@ const Inkomster = (props) => {
   const style = incomeStyle();
   const classes = useStyles();
 
-  console.log(props.income, props.incomeTotal); //undefined, undefined
-
+  console.log(props.income, props.incomeTotal); //undefined,undefined
   return (
     <Container>
       <Typography className={style.income_title} variant="h4">

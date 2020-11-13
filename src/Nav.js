@@ -41,14 +41,31 @@ function getSteps() {
 }
 
 //components underneath the stepper navigation
-function getStepContent(stepIndex, props) {
+function getStepContent(
+  stepIndex,
+  income,
+  setIncome,
+  incomeHandler,
+  incomeTotal,
+  setIncomeTotal,
+  incomeTotalHandler
+) {
   switch (stepIndex) {
     case 0:
       return <Info />;
     case 1:
       return <Viktig />;
     case 2:
-      return <Inkomster {...props} />;
+      return (
+        <Inkomster
+          income={income}
+          setIncome={setIncome}
+          incomeHandler={incomeHandler}
+          incomeTotal={incomeTotal}
+          setIncomeTotal={setIncomeTotal}
+          incomeTotalHandler={incomeTotalHandler}
+        />
+      );
     case 3:
       return "Familjeförhållande";
     case 4:
