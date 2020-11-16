@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: "30ch",
+      width: "25ch",
     },
   },
 }));
@@ -130,10 +130,9 @@ const Inkomster = (props) => {
             onChange={props.incomeHandler}
             variant="outlined"
           />
+          <Typography variant="body1"> Total: {props.incomeTotal} </Typography>
         </div>
       </form>
-      <Typography variant="body1"> Total: {props.incomeTotal} </Typography>{" "}
-      {/*Total: {props.incomeTotal} */}
     </Container>
   );
 };
