@@ -1,7 +1,6 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
-//Material UI
+//---------- Material UI
 import {
   Button,
   Container,
@@ -12,7 +11,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
-// importing each view of the API:
+//---------- importing each view of the API:
 import Info from "./views/Info";
 import Viktig from "./views/Viktig";
 import Inkomster from "./views/Inkomster";
@@ -20,7 +19,10 @@ import Familj from "./views/Familj";
 import Utgifter from "./views/Utgifter";
 import Resultat from "./views/Resultat";
 
-// instead of CSS:
+//----------- importing context
+import { IncomeContext } from "./context/IncomeContext";
+
+//----------- instead of CSS:
 import { navStyle } from "./Styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-//step's names in the stepper navigation
+//---------- step's names in the stepper navigation
 function getSteps() {
   return [
     "Info",
@@ -49,7 +51,7 @@ function getSteps() {
   ];
 }
 
-//components underneath the stepper navigation
+//------------ components underneath the stepper navigation
 function getStepContent(
   stepIndex,
   income,
@@ -98,19 +100,19 @@ export default function HorizontalLabelPositionBelowStepper(props) {
   const steps = getSteps();
   const style = navStyle();
 
-  /*states for the income in Inkomster component */
+  /*------------ states for the income in Inkomster component */
   const [income, setIncome] = useState({});
 
-  /*function to update income state */
+  /*------------ function to update income state */
   function incomeHandler(e) {
     let incomeData = { ...income, [e.target.name]: e.target.value };
     setIncome(incomeData);
   }
 
-  /*state for the total income in Inkomster component*/
-  const [incomeTotal, setIncomeTotal] = useState(0);
+  /*------------ updating incomeTotal with context hook, using it later in Resultat view*/
+  const { incomeTotal, setIncomeTotal } = useContext(IncomeContext);
 
-  /*to update the incomeTotal */
+  /*------------ to update the incomeTotal */
   const incomeTotalHandler = (obj) => {
     let objClone = { ...obj };
     let sum = Object.values(objClone)
@@ -119,7 +121,6 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     setIncomeTotal(sum);
   };
 
-  //useEffect works, incomeTotal used in Inkomster:
   useEffect(() => {
     incomeTotalHandler(income);
   }, [income]);
