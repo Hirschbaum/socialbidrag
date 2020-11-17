@@ -4,7 +4,9 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   Container,
+  createMuiTheme,
   makeStyles,
+  MuiThemeProvider,
   Step,
   StepLabel,
   Stepper,
@@ -38,6 +40,22 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
   },
 }));
+
+const muiTheme = createMuiTheme({
+  overrides: {
+    MuiStepIcon: {
+      root: {
+        color: "#ccc",
+        "&$active": {
+          color: "rgb(203, 0, 80)",
+        },
+        "&$completed": {
+          color: "rgb(203, 0, 80)",
+        },
+      },
+    },
+  },
+});
 
 //---------- step's names in the stepper navigation
 function getSteps() {
@@ -146,7 +164,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
 
   useEffect(() => {
     incomeTotalHandler(income);
-  }, [income]);
+  });
 
   //--------------------------UTGIFTER / EXPENSES -----------
   //------------ states for the expenses in Utgifter component
@@ -172,7 +190,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
 
   useEffect(() => {
     expensesTotalHandler(expenses);
-  }, [expenses]);
+  });
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -188,14 +206,16 @@ export default function HorizontalLabelPositionBelowStepper(props) {
 
   return (
     <Container className={classes.root} {...props}>
-      {/* steps in the Stepper navigation on each API page: */}
-      <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
+      <MuiThemeProvider theme={muiTheme}>
+        {/* steps in the Stepper navigation on each API page: */}
+        <Stepper activeStep={activeStep} alternativeLabel>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </MuiThemeProvider>
 
       <Container>
         <Container>
@@ -234,7 +254,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
                   setExpensesTotal,
                   expensesTotalHandler
                 )}{" "}
-                {/*in getStepContent: sends the states as well */}
+                {/*in getStepContent: sends the states, functions and callback functions as well */}
               </Typography>
               <Container>
                 <Button
