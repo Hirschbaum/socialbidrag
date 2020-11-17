@@ -130,7 +130,7 @@ const Inkomster = (props) => {
             onChange={props.incomeHandler}
             variant="outlined"
           />
-          <Typography variant="body1"> Total: {props.incomeTotal} </Typography>
+          <Typography variant="body1"> Summa: {props.incomeTotal} </Typography>
         </div>
       </form>
     </Container>

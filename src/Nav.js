@@ -21,6 +21,7 @@ import Resultat from "./views/Resultat";
 
 //----------- importing context
 import { IncomeContext } from "./context/IncomeContext";
+import { ExpensesContext } from "./context/ExpensesContext";
 
 //----------- instead of CSS:
 import { navStyle } from "./Styles";
@@ -59,7 +60,13 @@ function getStepContent(
   incomeHandler,
   incomeTotal,
   setIncomeTotal,
-  incomeTotalHandler
+  incomeTotalHandler,
+  expenses,
+  setExpenses,
+  expensesHandler,
+  expensesTotal,
+  setExpensesTotal,
+  expensesTotalHandler
 ) {
   switch (stepIndex) {
     case 0:
@@ -80,10 +87,24 @@ function getStepContent(
     case 3:
       return <Familj />;
     case 4:
-      return <Utgifter />;
+      return (
+        <Utgifter
+          expenses={expenses}
+          setExpenses={setExpenses}
+          expensesHandler={expensesHandler}
+          expensesTotal={expensesTotal}
+          setExpensesTotal={setExpensesTotal}
+          expensesTotalHandler={expensesTotalHandler}
+        />
+      );
     case 5:
       return (
-        <Resultat incomeTotal={incomeTotal} setIncomeTotal={setIncomeTotal} />
+        <Resultat
+          incomeTotal={incomeTotal}
+          setIncomeTotal={setIncomeTotal}
+          expensesTotal={expensesTotal}
+          setExpensesTotal={setExpensesTotal}
+        />
       );
     case 6:
       return "Länkar";
@@ -100,19 +121,21 @@ export default function HorizontalLabelPositionBelowStepper(props) {
   const steps = getSteps();
   const style = navStyle();
 
-  /*------------ states for the income in Inkomster component */
+  //---------------------INKOMSTER / INCOME ------------------
+  //----------------------------------------------------------
+  //------------ states for the income in Inkomster component
   const [income, setIncome] = useState({});
 
-  /*------------ function to update income state */
+  //------------ function to update income state
   function incomeHandler(e) {
     let incomeData = { ...income, [e.target.name]: e.target.value };
     setIncome(incomeData);
   }
 
-  /*------------ updating incomeTotal with context hook, using it later in Resultat view*/
+  //------------ updating incomeTotal with context hook, using it later in Resultat view
   const { incomeTotal, setIncomeTotal } = useContext(IncomeContext);
 
-  /*------------ to update the incomeTotal */
+  //------------ to update the incomeTotal
   const incomeTotalHandler = (obj) => {
     let objClone = { ...obj };
     let sum = Object.values(objClone)
@@ -125,12 +148,38 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     incomeTotalHandler(income);
   }, [income]);
 
+  //--------------------------UTGIFTER / EXPENSES -----------
+  //------------ states for the expenses in Utgifter component
+  const [expenses, setExpenses] = useState({});
+
+  //------------ function to update the expenses state
+  const expensesHandler = (e) => {
+    let expensesData = { ...expenses, [e.target.name]: e.target.value };
+    setExpenses(expensesData);
+  };
+
+  //------------ updating incomeTotal with context hook, using it later in Resultat view
+  const { expensesTotal, setExpensesTotal } = useContext(ExpensesContext);
+
+  //------------ to update the expensesTotal
+  const expensesTotalHandler = (obj) => {
+    let objClone = { ...obj };
+    let sum = Object.values(objClone)
+      .filter((prev) => prev !== "") //otherwise the total sum is NaN if the user delete an input
+      .reduce((prev, current) => parseInt(prev) + parseInt(current), 0);
+    setExpensesTotal(sum);
+  };
+
+  useEffect(() => {
+    expensesTotalHandler(expenses);
+  }, [expenses]);
+
   const handleNext = () => {
-    setActiveStep(activeStep + 1); //setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep(activeStep - 1); // setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep(activeStep - 1);
   };
 
   const handleReset = () => {
@@ -177,7 +226,13 @@ export default function HorizontalLabelPositionBelowStepper(props) {
                   incomeHandler,
                   incomeTotal,
                   setIncomeTotal,
-                  incomeTotalHandler
+                  incomeTotalHandler,
+                  expenses,
+                  setExpenses,
+                  expensesHandler,
+                  expensesTotal,
+                  setExpensesTotal,
+                  expensesTotalHandler
                 )}{" "}
                 {/*in getStepContent: sends the states as well */}
               </Typography>
