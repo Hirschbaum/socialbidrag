@@ -26,11 +26,21 @@ const Familj = (props) => {
   //----- if single 3150 else 5680 (in case of partner)
   //---------------------------------------------------
 
+  let familyMembersNumber = 1;
   const [status, setStatus] = useState("single"); //family status
+  const [kids, setKids] = useState({});
 
   const handleChange = (e) => {
-    setStatus(e.target.value);
+    setStatus(e.target.value); //family status: single OR partner
   };
+
+  //------------ function to update the number of kids in different age
+  function kidsHandler(e) {
+    let kidsData = { ...kids, [e.target.name]: e.target.value };
+    setKids(kidsData);
+  }
+
+  console.log(status, "familyMembersNumber: ", familyMembersNumber, kids);
 
   return (
     <Container>
@@ -63,31 +73,34 @@ const Familj = (props) => {
 
         <TextField
           //2170 per capita
-          //defaultValue={props.family.age0-1}
+          //defaultValue={kids.age0-1}
           id="age0-1"
           label="0-1 år"
+          max="5"
           name="age0-1"
-          //onChange={props.familyHandler}
+          onChange={kidsHandler}
           type="number"
           variant="outlined"
         />
         <TextField
           //2430 per capita
-          //defaultValue={props.family.age1-2}
+          //defaultValue={kids.age1-2}
           id="age1-2"
           label="1-2 år"
+          max="5"
           name="age1-2"
-          //onChange={props.familyHandler}
+          onChange={kidsHandler}
           type="number"
           variant="outlined"
         />
         <TextField
           //2160 per capita
-          //defaultValue={props.family.age3}
+          //defaultValue={kids.age3}
           id="age3"
           label="3 år"
+          max="5"
           name="age3"
-          //onChange={props.familyHandler}
+          onChange={kidsHandler}
           type="number"
           variant="outlined"
         />
@@ -98,7 +111,9 @@ const Familj = (props) => {
         {/*to count how many people live in the family */}
         {/*and depending on that number add a sum to familyTotal */}
 
-        <Typography variant="body1">Summa: </Typography>
+        <Typography variant="body1">
+          Summa: {status === "partner" ? 5680 : 3150}
+        </Typography>
       </form>
     </Container>
   );

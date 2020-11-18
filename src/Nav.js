@@ -156,7 +156,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
   //------------ to update the incomeTotal
   const incomeTotalHandler = (obj) => {
     let objClone = { ...obj };
-    let sum = Object.values(objClone)
+    let sum = Object.values(objClone) //[INT, INT, INT]
       .filter((prev) => prev !== "") //otherwise the total sum is NaN if the user delete an input
       .reduce((prev, current) => parseInt(prev) + parseInt(current), 0);
     setIncomeTotal(sum);
