@@ -16,7 +16,7 @@ const Inkomster = (props) => {
   const style = incomeStyle();
   const classes = useStyles();
 
-  console.log(props.income, props.incomeTotal);
+  //console.log(props.income, props.incomeTotal);
 
   return (
     <Container>

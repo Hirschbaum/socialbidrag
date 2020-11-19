@@ -40,10 +40,9 @@ const Familj = (props) => {
   //------------ calculate the number of family members
   const handelFamilyMembers = () => {
     let objClone = { ...kids };
-    let kidsNumber = Object.values(objClone).reduce(
-      (prev, current) => parseInt(prev) + parseInt(current),
-      0
-    );
+    let kidsNumber = Object.values(objClone)
+      .filter((prev) => prev !== "")
+      .reduce((prev, current) => parseInt(prev) + parseInt(current), 0);
     if (status === "partner") {
       setFamilyMembers(kidsNumber + 2);
     } else {
@@ -74,6 +73,15 @@ const Familj = (props) => {
     }
     if (num === 5) {
       setMemberCost(1850);
+    }
+    if (num === 6) {
+      setMemberCost(2090);
+    }
+    if (num === 7) {
+      setMemberCost(2260);
+    }
+    if (num === 8) {
+      setMemberCost(2430);
     }
   };
 
