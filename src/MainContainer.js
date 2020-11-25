@@ -17,7 +17,7 @@ import {
 import Info from "./views/Info";
 import Viktig from "./views/Viktig";
 import Inkomster from "./views/Inkomster";
-import Familj from "./views/Familj";
+import Familj2 from "./views/Familj2";
 import Utgifter from "./views/Utgifter";
 import Resultat from "./views/Resultat";
 
@@ -103,7 +103,7 @@ function getStepContent(
         />
       );
     case 3:
-      return <Familj />;
+      return <Familj2 />;
     case 4:
       return (
         <Utgifter
