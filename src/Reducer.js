@@ -84,12 +84,14 @@ export const addChildAction = ({ age, amount }) => ({
 export function reducer(state = initialState, { type, payload }) {
   switch (type) {
     case SET_STATUS: {
-      const changesToPartner = payload === "partner"; //if user chose the "partner" radio button
+      const changesToSingle = payload === "single";
+      const differenceInStatusCost = statusCost.partner - statusCost.single;
 
-      const familyMembers = changesToPartner ? 2 : 1; //if the user chose the "partner" instead of "single" radio button
-      const sum = changesToPartner //if the user chose the "partner" instead of "single" radio button, otherwise the costs for single in sum
-        ? statusCost.partner + memberCosts[2]
-        : statusCost.single + memberCosts[1];
+      const familyMembers = state.familyMembers + changesToSingle ? -1 : 1;
+      const sum =
+        state.sum + memberCosts[Math.min(familyMembers, 15)] + changesToSingle
+          ? -differenceInStatusCost
+          : differenceInStatusCost;
 
       return {
         status: payload,
@@ -106,7 +108,7 @@ export function reducer(state = initialState, { type, payload }) {
           ? [statusCost.single, 1]
           : [statusCost.partner, 2];
 
-      const kidToChangeIndex = state.kids.findIndex(byAgeRange(age));
+      const kidToChangeIndex = state.kids.findIndex(byAgeRange(age)); //cannot read property 'findInedx' of undefined
       const updatedKids = state.kids.map(
         amountToKids(kidToChangeIndex, amount)
       );
@@ -139,9 +141,9 @@ export function reducer(state = initialState, { type, payload }) {
 //factory function to find the index of a child by age range
 function byAgeRange(age) {
   return function (kid) {
-    const [min, max] = kid.age;
-    // eslint-disable-next-line no-mixed-operators
-    if ((age >= min && age <= max) || age === min) return true; // || age === min && age === max
+    console.log(kid.age.length);
+    const [min, max] = kid.age; //e.g. [4, 6] or [3]
+    if ((age >= min && age <= max) || age === min || age === max) return true;
     return false;
   };
 }
@@ -160,8 +162,29 @@ function amountToKids(index, amount) {
   };
 }
 
+//to reduce the expenses for the kid(s)
 function kidsToSumAndAmountTuple(acc, cur) {
   const [sum, amount] = acc;
 
   return [sum + cur.amount * cur.cost, amount + cur.amount];
 }
+
+/*other version of SET_STATUS:
+this one works better
+switch (type) {
+    case SET_STATUS: {
+      const changesToPartner = payload === "partner"; //if user chose the "partner" radio button
+
+      const familyMembers = changesToPartner ? 2 : 1; //if the user chose the "partner" instead of "single" radio button
+      const sum = changesToPartner //if the user chose the "partner" instead of "single" radio button, otherwise the costs for single in sum
+        ? statusCost.partner + memberCosts[2]
+        : statusCost.single + memberCosts[1];
+
+      return {
+        status: payload,
+        familyMembers,
+        sum,
+      };
+    }
+
+*/

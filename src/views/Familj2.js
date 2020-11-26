@@ -31,25 +31,17 @@ const Familj2 = () => {
     dispatch({ type: "SET_STATUS", payload: e.target.value });
   };
 
-  //dispatch(addChild({age: [0-1], amount: e.target.value})) with data-attributes!
+  //dispatch(handleKids({age: [0], amount: e.target.value}))
   //not working yet
+
   const handleKids = (e) => {
     dispatch({
       type: "SET_CHILDREN",
       payload: {
-        amount: e.target.value,
-        age: [
-          parseInt(e.target.dataset.minage),
-          parseInt(e.target.dataset.maxage),
-        ],
-      }, //to get the data-attribute from FamilyForm
+        age: parseInt(e.target.dataset.minage), //to get the data-attribute from FamilyForm
+        amount: parseInt(e.target.value),
+      },
     });
-    console.log(
-      e.target.value,
-      e.target.dataset.minage,
-      e.target.dataset.maxage,
-      state.kids
-    );
   };
 
   return (
@@ -80,7 +72,7 @@ const Familj2 = () => {
         <Typography variant="body1">
           Fyll i hur många barn bor hos dig:
         </Typography>
-        <FamilyForm handleKids={handleKids} />
+        <FamilyForm handleKids={handleKids} dispatch={dispatch} state={state} />
 
         <Typography variant="body1">Summa: {state.sum} </Typography>
       </form>
