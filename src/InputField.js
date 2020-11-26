@@ -1,10 +1,18 @@
 import React from "react";
-import TextField from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 
-const InputField = ({ label, name, onchange, value }) => {
+function InputField({ id, label, name, onchange, value }) {
   return (
-    <TextField label={label} name={name} onChange={onchange} value={value} />
+    <TextField
+      id={id}
+      label={label}
+      name={name}
+      onChange={onchange}
+      type="number"
+      value={value}
+      variant="outlined"
+    />
   );
-};
+}
 
 export default InputField;

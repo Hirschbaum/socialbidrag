@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import { reducer, initialState } from "../Reducer";
 import { useReducer } from "react";
+import FamilyForm from "../FamilyForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,11 +27,30 @@ const Familj2 = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleStatus = (e) => {
-    //setStatus(e.target.value); //family status: single OR partner
+    //family status: single OR partner
     dispatch({ type: "SET_STATUS", payload: e.target.value });
   };
 
-  console.log(state.status);
+  //dispatch(addChild({age: [0-1], amount: e.target.value})) with data-attributes!
+  //not working yet
+  const handleKids = (e) => {
+    dispatch({
+      type: "SET_CHILDREN",
+      payload: {
+        amount: e.target.value,
+        age: [
+          parseInt(e.target.dataset.minage),
+          parseInt(e.target.dataset.maxage),
+        ],
+      }, //to get the data-attribute from FamilyForm
+    });
+    console.log(
+      e.target.value,
+      e.target.dataset.minage,
+      e.target.dataset.maxage,
+      state.kids
+    );
+  };
 
   return (
     <Container>
@@ -43,7 +63,6 @@ const Familj2 = () => {
             name="familyStatus1"
             value={state.status}
             onChange={handleStatus}
-            //onChange={(e) => dispatch({ type: "SET_STATUS" })}
           >
             <FormControlLabel
               value="single"
@@ -61,6 +80,9 @@ const Familj2 = () => {
         <Typography variant="body1">
           Fyll i hur många barn bor hos dig:
         </Typography>
+        <FamilyForm handleKids={handleKids} />
+
+        <Typography variant="body1">Summa: {state.sum} </Typography>
       </form>
     </Container>
   );

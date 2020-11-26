@@ -172,7 +172,7 @@ const Familj = (props) => {
         <TextField
           //2170 per capita
           //defaultValue={kids.age0-1}
-          costkey="2170"
+
           id="age0-1"
           inputProps={{ min: "0", max: "10" }}
           label="0-1 år"
@@ -184,7 +184,7 @@ const Familj = (props) => {
         <TextField
           //2430 per capita
           //defaultValue={kids.age1-2}
-          costkey="2430"
+
           id="age1-2"
           inputProps={{ min: "0", max: "10" }}
           label="1-2 år"
@@ -196,7 +196,7 @@ const Familj = (props) => {
         <TextField
           //2160 per capita
           //defaultValue={kids.age3}
-          costkey="2160"
+
           id="age3"
           inputProps={{ min: "0", max: "10" }}
           label="3 år"

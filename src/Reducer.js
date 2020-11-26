@@ -9,6 +9,11 @@ const memberCosts = {
   8: 2430,
   9: 2600,
   10: 2770,
+  11: 2940,
+  12: 3110,
+  13: 3280,
+  14: 3450,
+  15: 3620,
 };
 
 const statusCost = {
@@ -79,14 +84,12 @@ export const addChildAction = ({ age, amount }) => ({
 export function reducer(state = initialState, { type, payload }) {
   switch (type) {
     case SET_STATUS: {
-      const changesToSingle = payload === "single";
-      const differenceInStatusCost = statusCost.partner - statusCost.single;
+      const changesToPartner = payload === "partner"; //if user chose the "partner" radio button
 
-      const familyMembers = state.familyMembers + changesToSingle ? -1 : 1;
-      const sum =
-        state.sum + memberCosts[Math.min(familyMembers, 10)] + changesToSingle
-          ? -differenceInStatusCost
-          : differenceInStatusCost;
+      const familyMembers = changesToPartner ? 2 : 1; //if the user chose the "partner" instead of "single" radio button
+      const sum = changesToPartner //if the user chose the "partner" instead of "single" radio button, otherwise the costs for single in sum
+        ? statusCost.partner + memberCosts[2]
+        : statusCost.single + memberCosts[1];
 
       return {
         status: payload,
@@ -113,7 +116,7 @@ export function reducer(state = initialState, { type, payload }) {
       ] = state.kids.reduce(kidsToSumAndAmountTuple, [0, 0]);
 
       const familyMembers = amountOfAdults + amountOfKids;
-      const sumForMembers = memberCosts[Math.min(familyMembers, 10)];
+      const sumForMembers = memberCosts[Math.min(familyMembers, 15)];
       const totalSum = sumForAdults + sumForKids + sumForMembers;
 
       return {
@@ -137,7 +140,8 @@ export function reducer(state = initialState, { type, payload }) {
 function byAgeRange(age) {
   return function (kid) {
     const [min, max] = kid.age;
-    if (age >= min && age <= max) return true;
+    // eslint-disable-next-line no-mixed-operators
+    if ((age >= min && age <= max) || age === min) return true; // || age === min && age === max
     return false;
   };
 }
