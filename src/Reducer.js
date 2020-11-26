@@ -84,14 +84,12 @@ export const addChildAction = ({ age, amount }) => ({
 export function reducer(state = initialState, { type, payload }) {
   switch (type) {
     case SET_STATUS: {
-      const changesToSingle = payload === "single";
-      const differenceInStatusCost = statusCost.partner - statusCost.single;
+      const changesToPartner = payload === "partner"; //if user chose the "partner" radio button
 
-      const familyMembers = state.familyMembers + changesToSingle ? -1 : 1;
-      const sum =
-        state.sum + memberCosts[Math.min(familyMembers, 15)] + changesToSingle
-          ? -differenceInStatusCost
-          : differenceInStatusCost;
+      const familyMembers = state.familyMembers + changesToPartner ? 1 : -1; //if the user chose the "partner" instead of "single" radio button
+      const sum = changesToPartner //if the user chose the "partner" instead of "single" radio button, otherwise the costs for single in sum
+        ? statusCost.partner + memberCosts[2]
+        : statusCost.single + memberCosts[1];
 
       return {
         status: payload,
@@ -108,7 +106,7 @@ export function reducer(state = initialState, { type, payload }) {
           ? [statusCost.single, 1]
           : [statusCost.partner, 2];
 
-      const kidToChangeIndex = state.kids.findIndex(byAgeRange(age)); //cannot read property 'findInedx' of undefined
+      const kidToChangeIndex = state.kids.findIndex(byAgeRange(age));
       const updatedKids = state.kids.map(
         amountToKids(kidToChangeIndex, amount)
       );
@@ -139,11 +137,13 @@ export function reducer(state = initialState, { type, payload }) {
  */
 
 //factory function to find the index of a child by age range
-function byAgeRange(age) {
+function byAgeRange(ageInp) {
   return function (kid) {
     console.log(kid.age.length);
     const [min, max] = kid.age; //e.g. [4, 6] or [3]
-    if ((age >= min && age <= max) || age === min || age === max) return true;
+    if (ageInp === min || ageInp === max)
+      //((ageInp >= min && ageInp <= max) || (ageInp === min && ageInp === max))
+      return true;
     return false;
   };
 }
@@ -168,23 +168,3 @@ function kidsToSumAndAmountTuple(acc, cur) {
 
   return [sum + cur.amount * cur.cost, amount + cur.amount];
 }
-
-/*other version of SET_STATUS:
-this one works better
-switch (type) {
-    case SET_STATUS: {
-      const changesToPartner = payload === "partner"; //if user chose the "partner" radio button
-
-      const familyMembers = changesToPartner ? 2 : 1; //if the user chose the "partner" instead of "single" radio button
-      const sum = changesToPartner //if the user chose the "partner" instead of "single" radio button, otherwise the costs for single in sum
-        ? statusCost.partner + memberCosts[2]
-        : statusCost.single + memberCosts[1];
-
-      return {
-        status: payload,
-        familyMembers,
-        sum,
-      };
-    }
-
-*/

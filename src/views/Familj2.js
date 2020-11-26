@@ -24,14 +24,15 @@ const useStyles = makeStyles((theme) => ({
 
 const Familj2 = () => {
   const classes = useStyles();
-  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const [state, dispatch] = useReducer(reducer, initialState); //Uncaught TypeError: Cannot read property 'findIndex' of undefined
 
   const handleStatus = (e) => {
     //family status: single OR partner
     dispatch({ type: "SET_STATUS", payload: e.target.value });
   };
 
-  //dispatch(handleKids({age: [0], amount: e.target.value}))
+  //dispatch(handleKids({age: [4-6], amount: e.target.value}))
   //not working yet
 
   const handleKids = (e) => {
