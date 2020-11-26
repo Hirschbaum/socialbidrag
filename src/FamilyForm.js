@@ -9,8 +9,7 @@ const FamilyForm = ({ handleKids }) => {
       <InputField
         id="age0"
         inputProps={{
-          "data-minage": "0",
-          "data-maxage": "0",
+          "data-kidage": "0-1",
           min: "0",
           max: "10",
         }}
@@ -23,8 +22,7 @@ const FamilyForm = ({ handleKids }) => {
       <InputField
         id="age1-2"
         inputProps={{
-          "data-minage": "1",
-          "data-maxage": "2",
+          "data-kidage": "1-2",
           min: "0",
           max: "10",
         }}
@@ -37,8 +35,7 @@ const FamilyForm = ({ handleKids }) => {
       <InputField
         id="age3"
         inputProps={{
-          "data-minage": "3",
-          "data-maxage": "3",
+          "data-kidage": "3",
           min: "0",
           max: "10",
         }}
@@ -51,8 +48,7 @@ const FamilyForm = ({ handleKids }) => {
       <InputField
         id="age4-6"
         inputProps={{
-          "data-minage": "4",
-          "data-maxage": "6",
+          "data-kidage": "4-6",
           min: "0",
           max: "10",
         }}

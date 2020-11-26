@@ -26,7 +26,6 @@ const Familj2 = () => {
   const classes = useStyles();
 
   const [state, dispatch] = useReducer(reducer, initialState); //Uncaught TypeError: Cannot read property 'findIndex' of undefined
-
   const handleStatus = (e) => {
     //family status: single OR partner
     dispatch({ type: "SET_STATUS", payload: e.target.value });
@@ -39,7 +38,7 @@ const Familj2 = () => {
     dispatch({
       type: "SET_CHILDREN",
       payload: {
-        age: parseInt(e.target.dataset.minage), //to get the data-attribute from FamilyForm
+        age: e.target.dataset.kidage, //to get the data-attribute from FamilyForm
         amount: parseInt(e.target.value),
       },
     });

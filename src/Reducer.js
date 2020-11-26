@@ -27,42 +27,42 @@ export const initialState = {
   sum: statusCost.single + memberCosts[1],
   kids: [
     {
-      age: [0],
+      age: "0-1",
       amount: 0,
       cost: 2170,
     },
     {
-      age: [1, 2],
+      age: "1-2",
       amount: 0,
       cost: 2430,
     },
     {
-      age: [3],
+      age: "3",
       amount: 0,
       cost: 2160,
     },
     {
-      age: [4, 6],
+      age: "4-6",
       amount: 0,
       cost: 2430,
     },
     {
-      age: [7, 10],
+      age: "7-10",
       amount: 0,
       cost: 2170,
     },
     {
-      age: [11, 14],
+      age: "11-14",
       amount: 0,
       cost: 3510,
     },
     {
-      age: [15, 18],
+      age: "15-18",
       amount: 0,
       cost: 3950,
     },
     {
-      age: [19, 20],
+      age: "19-20",
       amount: 0,
       cost: 3980,
     },
@@ -82,6 +82,7 @@ export const addChildAction = ({ age, amount }) => ({
 });
 
 export function reducer(state = initialState, { type, payload }) {
+  console.log("innan", state);
   switch (type) {
     case SET_STATUS: {
       const changesToPartner = payload === "partner"; //if user chose the "partner" radio button
@@ -91,11 +92,14 @@ export function reducer(state = initialState, { type, payload }) {
         ? statusCost.partner + memberCosts[2]
         : statusCost.single + memberCosts[1];
 
-      return {
+      const newState = {
+        ...state,
         status: payload,
         familyMembers,
         sum,
       };
+      console.log("STATUS", newState);
+      return newState;
     }
 
     case SET_CHILDREN: {
@@ -106,7 +110,7 @@ export function reducer(state = initialState, { type, payload }) {
           ? [statusCost.single, 1]
           : [statusCost.partner, 2];
 
-      const kidToChangeIndex = state.kids.findIndex(byAgeRange(age));
+      const kidToChangeIndex = state.kids.findIndex(byAgeRange(age)); //undefined
       const updatedKids = state.kids.map(
         amountToKids(kidToChangeIndex, amount)
       );
@@ -119,12 +123,15 @@ export function reducer(state = initialState, { type, payload }) {
       const sumForMembers = memberCosts[Math.min(familyMembers, 15)];
       const totalSum = sumForAdults + sumForKids + sumForMembers;
 
-      return {
+      const newState = {
         ...state,
         kids: updatedKids,
         sum: totalSum,
         familyMembers,
       };
+
+      console.log("CHILDREN", newState);
+      return newState;
     }
 
     default:
@@ -140,10 +147,8 @@ export function reducer(state = initialState, { type, payload }) {
 function byAgeRange(ageInp) {
   return function (kid) {
     console.log(kid.age.length);
-    const [min, max] = kid.age; //e.g. [4, 6] or [3]
-    if (ageInp === min || ageInp === max)
-      //((ageInp >= min && ageInp <= max) || (ageInp === min && ageInp === max))
-      return true;
+    //what if user deletes the input?
+    if (ageInp === kid.age) return true; //undefined
     return false;
   };
 }
