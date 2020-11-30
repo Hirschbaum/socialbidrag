@@ -1,3 +1,4 @@
+//riksnorm 2020:
 const memberCosts = {
   1: 1010,
   2: 1120,
@@ -6,16 +7,12 @@ const memberCosts = {
   5: 1850,
   6: 2090,
   7: 2260,
-  8: 2430,
-  9: 2600,
-  10: 2770,
-  11: 2940,
-  12: 3110,
-  13: 3280,
-  14: 3450,
-  15: 3620,
 };
 
+//riksnorm 2020:
+const costForExtraMember = 170;
+
+//riksnorm 2020:
 const statusCost = {
   single: 3150,
   partner: 5680,
@@ -25,6 +22,7 @@ export const initialState = {
   status: "single",
   familyMembers: 1,
   sum: statusCost.single + memberCosts[1],
+  //riksnorm 2020:
   kids: [
     {
       age: "0-1",
@@ -82,94 +80,75 @@ export const addChildAction = ({ age, amount }) => ({
 });
 
 export function reducer(state = initialState, { type, payload }) {
-  console.log("innan", state);
+  let newState = {
+    ...state,
+  };
+
   switch (type) {
     case SET_STATUS: {
-      const changesToPartner = payload === "partner"; //if user chose the "partner" radio button
-
-      const familyMembers = state.familyMembers + changesToPartner ? 1 : -1; //if the user chose the "partner" instead of "single" radio button
-      const sum = changesToPartner //if the user chose the "partner" instead of "single" radio button, otherwise the costs for single in sum
-        ? statusCost.partner + memberCosts[2]
-        : statusCost.single + memberCosts[1];
-
-      const newState = {
-        ...state,
-        status: payload,
-        familyMembers,
-        sum,
-      };
-      console.log("STATUS", newState);
-      return newState;
+      newState.status = payload;
+      break;
     }
 
     case SET_CHILDREN: {
       const { age, amount } = payload;
 
-      const [sumForAdults, amountOfAdults] =
-        state.status === "single"
-          ? [statusCost.single, 1]
-          : [statusCost.partner, 2];
-
-      const kidToChangeIndex = state.kids.findIndex(byAgeRange(age)); //undefined
-      const updatedKids = state.kids.map(
-        amountToKids(kidToChangeIndex, amount)
+      const kidToChangeIndex = state.kids.findIndex(byAgeRange(age));
+      newState.kids = newState.kids.map((kid, index) =>
+        index === kidToChangeIndex ? { ...kid, amount } : kid
       );
-      const [
-        sumForKids,
-        amountOfKids,
-      ] = state.kids.reduce(kidsToSumAndAmountTuple, [0, 0]);
-
-      const familyMembers = amountOfAdults + amountOfKids;
-      const sumForMembers = memberCosts[Math.min(familyMembers, 15)];
-      const totalSum = sumForAdults + sumForKids + sumForMembers;
-
-      const newState = {
-        ...state,
-        kids: updatedKids,
-        sum: totalSum,
-        familyMembers,
-      };
-
-      console.log("CHILDREN", newState);
-      return newState;
+      break;
     }
 
     default:
       return state;
   }
+
+  newState.familyMembers = countFamilyMembers(newState);
+  newState.sum = calculateSum(newState);
+
+  return newState;
 }
 
 /**
- *  Reducer-specific utility functions
- */
+ **  Reducer-specific utility functions
+ **/
 
 //factory function to find the index of a child by age range
+//ageInp is the input from the user when the user gives the amount of children in a specific age range
 function byAgeRange(ageInp) {
   return function (kid) {
     console.log(kid.age.length);
-    //what if user deletes the input?
-    if (ageInp === kid.age) return true; //undefined
+    if (ageInp === kid.age) return true;
     return false;
   };
 }
 
-//to find a kid and the index to the kid, and return kid with the new amount of kid
-function amountToKids(index, amount) {
-  return (kid, idx) => {
-    if (idx === index) {
-      return {
-        ...kid,
-        amount,
-      };
-    }
+function countFamilyMembers({ status, kids }) {
+  const amountOfAdults = status === "single" ? 1 : 2;
+  const amountOfKids = kids.reduce((acc, cur) => acc + (cur.amount || 0), 0); //returns the amount of kids, if the input field is falsy, like an empty string, it returns 0
 
-    return kid;
-  };
+  return amountOfAdults + amountOfKids;
 }
 
-//to reduce the expenses for the kid(s)
-function kidsToSumAndAmountTuple(acc, cur) {
-  const [sum, amount] = acc;
+//calculates and returns the TOTAL FAMILY EXPENSES depending on:
+//1. statusCost: relationship (single or partner), 2. memberCost: family members and 3. costOfKids: expenses for the kids
+//all of these expenses according to the Swedish riksnorm in 2020
+function calculateSum({ status, kids, familyMembers }) {
+  const costOfStatus = statusCost[status];
+  let memberCost;
 
-  return [sum + cur.amount * cur.cost, amount + cur.amount];
+  if (familyMembers > 7) {
+    const surplusMembers = familyMembers - 7;
+    memberCost = memberCosts[7] + surplusMembers * costForExtraMember;
+  } else {
+    memberCost = memberCosts[familyMembers];
+  }
+
+  const costOfKids = kids.reduce(
+    (acc, { amount, cost }) => (amount ? acc + amount * cost : acc),
+    0
+  );
+
+  return costOfStatus + memberCost + costOfKids;
 }
