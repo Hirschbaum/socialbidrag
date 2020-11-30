@@ -118,7 +118,7 @@ export function reducer(state = initialState, { type, payload }) {
 //ageInp is the input from the user when the user gives the amount of children in a specific age range
 function byAgeRange(ageInp) {
   return function (kid) {
-    console.log(kid.age.length);
+    //console.log(kid.age.length);
     if (ageInp === kid.age) return true;
     return false;
   };
@@ -127,7 +127,7 @@ function byAgeRange(ageInp) {
 function countFamilyMembers({ status, kids }) {
   const amountOfAdults = status === "single" ? 1 : 2;
   const amountOfKids = kids.reduce((acc, cur) => acc + (cur.amount || 0), 0); //returns the amount of kids, if the input field is falsy, like an empty string, it returns 0
-
+  //console.log("adults: ", amountOfAdults, "kids: ", amountOfKids);
   return amountOfAdults + amountOfKids;
 }
 

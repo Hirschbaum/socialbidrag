@@ -22,7 +22,7 @@ import Utgifter from "./views/Utgifter";
 import Resultat from "./views/Resultat";
 
 //----------- importing context
-import { IncomeContext } from "./context/IncomeContext";
+
 import { ExpensesContext } from "./context/ExpensesContext";
 
 //----------- instead of CSS:
@@ -151,7 +151,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
   }
 
   //------------ updating incomeTotal with context hook, using it later in Resultat view
-  const { incomeTotal, setIncomeTotal } = useContext(IncomeContext);
+  const { incomeTotal, setIncomeTotal } = useContext(ExpensesContext);
 
   //------------ to update the incomeTotal
   const incomeTotalHandler = (obj) => {

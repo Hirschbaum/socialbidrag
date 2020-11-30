@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-import { IncomeContext } from "../context/IncomeContext";
 import { ExpensesContext } from "../context/ExpensesContext";
 import { Container, Typography } from "@material-ui/core";
 
 const Resultat = () => {
-  const { incomeTotal } = useContext(IncomeContext);
+  const { incomeTotal } = useContext(ExpensesContext);
   const { expensesTotal } = useContext(ExpensesContext);
 
   return (
