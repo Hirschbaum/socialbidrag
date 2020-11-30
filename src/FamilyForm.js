@@ -2,12 +2,13 @@ import React from "react";
 import InputField from "./InputField";
 import { Box } from "@material-ui/core";
 
-const FamilyForm = ({ handleKids }) => {
+const FamilyForm = ({ handleKids, state }) => {
+  console.log(state.kids[0].amount); //working but the value disappears from the input field when click NEXT
   //add styling here later
   return (
     <Box>
       <InputField
-        //defaultValue={state.kids[0].amount}
+        defaultValue={state.kids[0].amount > 0 ? state.kids[0].amount : ""}
         id="age0"
         inputProps={{
           "data-kidage": "0-1",
@@ -21,6 +22,7 @@ const FamilyForm = ({ handleKids }) => {
         variant="outlined"
       />
       <InputField
+        defaultValue={state.kids[1].amount > 0 ? state.kids[1].amount : ""}
         id="age1-2"
         inputProps={{
           "data-kidage": "1-2",
@@ -34,6 +36,7 @@ const FamilyForm = ({ handleKids }) => {
         variant="outlined"
       />
       <InputField
+        defaultValue={state.kids[2].amount > 0 ? state.kids[2].amount : ""}
         id="age3"
         inputProps={{
           "data-kidage": "3",
@@ -47,6 +50,7 @@ const FamilyForm = ({ handleKids }) => {
         variant="outlined"
       />
       <InputField
+        defaultValue={state.kids[3].amount > 0 ? state.kids[3].amount : ""}
         id="age4-6"
         inputProps={{
           "data-kidage": "4-6",
@@ -60,6 +64,7 @@ const FamilyForm = ({ handleKids }) => {
         variant="outlined"
       />
       <InputField
+        defaultValue={state.kids[4].amount > 0 ? state.kids[4].amount : ""}
         id="age7-10"
         inputProps={{
           "data-kidage": "7-10",
@@ -73,6 +78,7 @@ const FamilyForm = ({ handleKids }) => {
         variant="outlined"
       />
       <InputField
+        defaultValue={state.kids[5].amount > 0 ? state.kids[5].amount : ""}
         id="age11-14"
         inputProps={{
           "data-kidage": "11-14",
@@ -86,6 +92,7 @@ const FamilyForm = ({ handleKids }) => {
         variant="outlined"
       />
       <InputField
+        defaultValue={state.kids[6].amount > 0 ? state.kids[6].amount : ""}
         id="age15-18"
         inputProps={{
           "data-kidage": "15-18",
@@ -99,6 +106,7 @@ const FamilyForm = ({ handleKids }) => {
         variant="outlined"
       />
       <InputField
+        defaultValue={state.kids[7].amount > 0 ? state.kids[7].amount : ""}
         id="age19-20"
         inputProps={{
           "data-kidage": "19-20",

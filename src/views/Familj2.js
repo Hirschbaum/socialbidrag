@@ -9,7 +9,7 @@ import {
   RadioGroup,
   Typography,
 } from "@material-ui/core";
-//import { reducer, initialState } from "../Reducer";
+
 import { useContext } from "react";
 import FamilyForm from "../FamilyForm";
 import { ExpensesContext } from "../context/ExpensesContext";
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Familj2 = () => {
+const Familj2 = (props) => {
   const classes = useStyles();
 
   const { state, dispatch } = useContext(ExpensesContext);
