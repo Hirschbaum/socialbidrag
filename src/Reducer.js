@@ -21,7 +21,7 @@ const statusCost = {
 export const initialState = {
   status: "single",
   familyMembers: 1,
-  sum: statusCost.single + memberCosts[1],
+  familyTotal: statusCost.single + memberCosts[1],
   //riksnorm 2020:
   kids: [
     {
@@ -105,7 +105,7 @@ export function reducer(state = initialState, { type, payload }) {
   }
 
   newState.familyMembers = countFamilyMembers(newState);
-  newState.sum = calculateSum(newState);
+  newState.familyTotal = calculateSum(newState);
 
   return newState;
 }

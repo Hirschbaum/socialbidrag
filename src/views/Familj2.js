@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 const Familj2 = () => {
   const classes = useStyles();
 
-  const [state, dispatch] = useReducer(reducer, initialState); //Uncaught TypeError: Cannot read property 'findIndex' of undefined
+  const [state, dispatch] = useReducer(reducer, initialState);
   const handleStatus = (e) => {
     //family status: single OR partner
     dispatch({ type: "SET_STATUS", payload: e.target.value });
@@ -74,7 +74,7 @@ const Familj2 = () => {
         </Typography>
         <FamilyForm handleKids={handleKids} dispatch={dispatch} state={state} />
 
-        <Typography variant="body1">Summa: {state.sum} </Typography>
+        <Typography variant="body1">Summa: {state.familyTotal} </Typography>
       </form>
     </Container>
   );

@@ -12,7 +12,12 @@ function App() {
 
   return (
     <ExpensesContext.Provider
-      value={{ expensesTotal, setExpensesTotal, incomeTotal, setIncomeTotal }}
+      value={{
+        expensesTotal,
+        setExpensesTotal,
+        incomeTotal,
+        setIncomeTotal,
+      }}
     >
       <Container>
         {apiOn ? <MainContainer /> : <Home setApiOn={setApiOn} apiOn={apiOn} />}
