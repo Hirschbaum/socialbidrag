@@ -31,9 +31,6 @@ const Familj2 = () => {
     dispatch({ type: "SET_STATUS", payload: e.target.value });
   };
 
-  //dispatch(handleKids({age: [4-6], amount: e.target.value}))
-  //not working yet
-
   const handleKids = (e) => {
     dispatch({
       type: "SET_CHILDREN",
