@@ -7,6 +7,7 @@ const FamilyForm = ({ handleKids }) => {
   return (
     <Box>
       <InputField
+        //defaultValue={state.kids[0].amount}
         id="age0"
         inputProps={{
           "data-kidage": "0-1",

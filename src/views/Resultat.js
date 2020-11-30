@@ -7,8 +7,6 @@ const Resultat = () => {
   const { state } = useContext(ExpensesContext);
   const { expensesTotal } = useContext(ExpensesContext);
 
-  console.log(state.familyTotal); //undefined
-
   return (
     <Container>
       <Typography variant="h4">Resultat</Typography>

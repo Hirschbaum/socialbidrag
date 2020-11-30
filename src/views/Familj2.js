@@ -50,6 +50,7 @@ const Familj2 = () => {
           <FormLabel component="legend"></FormLabel>
           <RadioGroup
             aria-label="familyStatus"
+            defaultValue={state.status}
             name="familyStatus1"
             value={state.status}
             onChange={handleStatus}
