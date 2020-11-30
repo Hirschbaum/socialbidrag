@@ -9,9 +9,10 @@ import {
   RadioGroup,
   Typography,
 } from "@material-ui/core";
-import { reducer, initialState } from "../Reducer";
-import { useReducer } from "react";
+//import { reducer, initialState } from "../Reducer";
+import { useContext } from "react";
 import FamilyForm from "../FamilyForm";
+import { ExpensesContext } from "../context/ExpensesContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 const Familj2 = () => {
   const classes = useStyles();
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { state, dispatch } = useContext(ExpensesContext);
   const handleStatus = (e) => {
     //family status: single OR partner
     dispatch({ type: "SET_STATUS", payload: e.target.value });

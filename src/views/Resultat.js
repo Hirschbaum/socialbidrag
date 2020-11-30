@@ -7,6 +7,8 @@ const Resultat = () => {
   const { familyTotal } = useContext(ExpensesContext);
   const { expensesTotal } = useContext(ExpensesContext);
 
+  console.log(familyTotal);
+
   return (
     <Container>
       <Typography variant="h4">Resultat</Typography>
