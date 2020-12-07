@@ -11,8 +11,8 @@ import {
 } from "@material-ui/core";
 
 import { useContext } from "react";
-import FamilyForm from "../FamilyForm";
-import { ExpensesContext } from "../context/ExpensesContext";
+import FamilyForm from "../components/FamilyForm";
+import { FormContext } from "../context/FormContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 const Familj = (props) => {
   const classes = useStyles();
 
-  const { state, dispatch } = useContext(ExpensesContext);
+  const { state, dispatch } = useContext(FormContext);
   const handleStatus = (e) => {
     //family status: single OR partner
     dispatch({ type: "SET_STATUS", payload: e.target.value });

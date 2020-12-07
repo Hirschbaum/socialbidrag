@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Typography } from "@material-ui/core";
-import { homeStyle } from "./Styles";
+import { homeStyle } from "../Styles";
 
 function Home(props) {
   const style = homeStyle();

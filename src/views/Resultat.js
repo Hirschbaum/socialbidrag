@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
-import { ExpensesContext } from "../context/ExpensesContext";
+import { FormContext } from "../context/FormContext";
 import { Box, Container, Typography } from "@material-ui/core";
+import NeagtivResultLinks from "../components/NegativResultLinks";
+import PositivResultLinks from "../components/PositivResultLinks";
 
 const Resultat = () => {
-  const { incomeTotal } = useContext(ExpensesContext);
-  const { state } = useContext(ExpensesContext);
-  const { expensesTotal } = useContext(ExpensesContext);
+  const { incomeTotal } = useContext(FormContext);
+  const { state } = useContext(FormContext);
+  const { expensesTotal } = useContext(FormContext);
 
   const result =
     (incomeTotal || 0) - (state.familyTotal || 0) - (expensesTotal || 0);
@@ -36,6 +38,7 @@ const Resultat = () => {
           försörjningsstöd eller ha mer information.
         </Typography>
       </Box>
+      {result <= 0 ? <PositivResultLinks /> : <NeagtivResultLinks />}
     </Container>
   );
 };

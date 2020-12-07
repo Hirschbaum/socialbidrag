@@ -20,10 +20,11 @@ import Inkomster from "./views/Inkomster";
 import Familj from "./views/Familj";
 import Utgifter from "./views/Utgifter";
 import Resultat from "./views/Resultat";
+//import PositivResultLinks from "./views/PositivResultLinks";
 
 //----------- importing context
 
-import { ExpensesContext } from "./context/ExpensesContext";
+import { FormContext } from "./context/FormContext";
 
 //----------- instead of CSS:
 import { navStyle } from "./Styles";
@@ -59,15 +60,7 @@ const muiTheme = createMuiTheme({
 
 //---------- step's names in the stepper navigation
 function getSteps() {
-  return [
-    "Info",
-    "Viktig",
-    "Inkomster",
-    "Familj",
-    "Utgifter",
-    "Resultat",
-    "Länkar",
-  ];
+  return ["Info", "Viktig", "Inkomster", "Familj", "Utgifter", "Resultat"];
 }
 
 //------------ components underneath the stepper navigation
@@ -125,8 +118,6 @@ function getStepContent(
         />
       );
     case 6:
-      return "Länkar";
-    case 7:
       return "Återställa";
     default:
       return "Unknown stepIndex";
@@ -151,7 +142,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
   }
 
   //------------ updating incomeTotal with context hook, using it later in Resultat view
-  const { incomeTotal, setIncomeTotal } = useContext(ExpensesContext);
+  const { incomeTotal, setIncomeTotal } = useContext(FormContext);
 
   //------------ to update the incomeTotal
   const incomeTotalHandler = (obj) => {
@@ -177,7 +168,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
   };
 
   //------------ updating incomeTotal with context hook, using it later in Resultat view
-  const { expensesTotal, setExpensesTotal } = useContext(ExpensesContext);
+  const { expensesTotal, setExpensesTotal } = useContext(FormContext);
 
   //------------ to update the expensesTotal
   const expensesTotalHandler = (obj) => {

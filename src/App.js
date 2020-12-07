@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useReducer } from "react";
 import { Container } from "@material-ui/core";
-import Home from "./Home";
+import Home from "./views/Home";
 import MainContainer from "./MainContainer";
-import { ExpensesContext } from "./context/ExpensesContext";
-import { initialState, reducer } from "./Reducer";
+import { FormContext } from "./context/FormContext";
+import { initialState, reducer } from "./reducer/Reducer";
 
 function App() {
   const [apiOn, setApiOn] = useState(false);
@@ -13,7 +13,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <ExpensesContext.Provider
+    <FormContext.Provider
       value={{
         expensesTotal,
         setExpensesTotal,
@@ -26,7 +26,7 @@ function App() {
       <Container>
         {apiOn ? <MainContainer /> : <Home setApiOn={setApiOn} apiOn={apiOn} />}
       </Container>
-    </ExpensesContext.Provider>
+    </FormContext.Provider>
   );
 }
 

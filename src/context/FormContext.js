@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export const ExpensesContext = createContext({
+export const FormContext = createContext({
   incomeTotal: 0,
   familyTotal: 0,
   expensesTotal: 0,
