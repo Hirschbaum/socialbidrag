@@ -79,6 +79,12 @@ export const addChildAction = ({ age, amount }) => ({
   payload: { age, amount },
 });
 
+const RESET_CHILDREN = "RESET_CHILDREN";
+export const resetChildAction = () => ({
+  type: RESET_CHILDREN,
+  //payload: {amount },
+});
+
 export function reducer(state = initialState, { type, payload }) {
   let newState = {
     ...state,
@@ -96,6 +102,13 @@ export function reducer(state = initialState, { type, payload }) {
       const kidToChangeIndex = state.kids.findIndex(byAgeRange(age));
       newState.kids = newState.kids.map((kid, index) =>
         index === kidToChangeIndex ? { ...kid, amount } : kid
+      );
+      break;
+    }
+
+    case RESET_CHILDREN: {
+      newState.kids = newState.kids.map((kid) =>
+        kid.amount !== 0 || kid.amount !== "" ? { ...kid, amount: 0 } : kid
       );
       break;
     }
@@ -118,7 +131,6 @@ export function reducer(state = initialState, { type, payload }) {
 //ageInp is the input from the user when the user gives the amount of children in a specific age range
 function byAgeRange(ageInp) {
   return function (kid) {
-    //console.log(kid.age.length);
     if (ageInp === kid.age) return true;
     return false;
   };

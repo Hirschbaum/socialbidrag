@@ -5,11 +5,7 @@ const PositivResultLinks = () => {
   return (
     <Box>
       <Typography variant="body1">
-        På den länken nedanför hittar du informationen hur du ansöker om
-        ekonomiskt bistånd.
-      </Typography>
-      <Typography variant="body1">
-        Manueller i pdf format är också tillgängliga på olika språk.
+        Mer informationen hur du ansöker om ekonomiskt bistånd:
       </Typography>
       <Typography variant="body1">
         https://helsingborg.se/omsorg-och-stod/socialt-och-ekonomiskt-stod/e-tjanst/
@@ -18,7 +14,7 @@ const PositivResultLinks = () => {
         Behöver du hjälp med att ansöka digitalt?
       </Typography>
       <Typography variant="body1">
-        Då kan kontakta Kontaktcenter på telefonnummer 042 10 50 00.
+        Ring Kontaktcenter på telefonnummer 042 10 50 00.
       </Typography>
       <Typography variant="body1">
         Du kan också ringa din socialsekreterare om du vill ha hjälp per

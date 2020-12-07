@@ -179,6 +179,12 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     setExpensesTotal(sum);
   };
 
+  //----------- to reset all the inputs of children when clicking on "Återställa"
+  const { dispatch } = useContext(FormContext);
+  const resetChildren = (e) => {
+    dispatch({ type: "RESET_CHILDREN" });
+  };
+
   useEffect(() => {
     expensesTotalHandler(expenses);
   });
@@ -193,6 +199,14 @@ export default function HorizontalLabelPositionBelowStepper(props) {
 
   const handleReset = () => {
     setActiveStep(0);
+    setExpenses({});
+    setExpensesTotal(0);
+    incomeTotalHandler(0);
+    setIncome({});
+    setIncomeTotal(0);
+    resetChildren();
+    //set incomeTotal, familyTotal, expensesTotal to 0
+    //go back to Home view
   };
 
   return (
