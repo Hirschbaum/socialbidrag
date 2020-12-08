@@ -82,7 +82,11 @@ export const addChildAction = ({ age, amount }) => ({
 const RESET_CHILDREN = "RESET_CHILDREN";
 export const resetChildAction = () => ({
   type: RESET_CHILDREN,
-  //payload: {amount },
+});
+
+const RESET_STATUS = "RESET_STATUS";
+export const resetStatusAction = () => ({
+  type: RESET_STATUS,
 });
 
 export function reducer(state = initialState, { type, payload }) {
@@ -113,12 +117,20 @@ export function reducer(state = initialState, { type, payload }) {
       break;
     }
 
+    case RESET_STATUS: {
+      newState.status = "single";
+      newState.familyMembers = 1;
+      break;
+    }
+
     default:
       return state;
   }
 
   newState.familyMembers = countFamilyMembers(newState);
   newState.familyTotal = calculateSum(newState);
+
+  //console.log(newState);
 
   return newState;
 }

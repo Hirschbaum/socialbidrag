@@ -181,8 +181,13 @@ export default function HorizontalLabelPositionBelowStepper(props) {
 
   //----------- to reset all the inputs of children when clicking on "Återställa"
   const { dispatch } = useContext(FormContext);
-  const resetChildren = (e) => {
+  const resetChildren = () => {
     dispatch({ type: "RESET_CHILDREN" });
+  };
+
+  //----------- to reset the family status to "single" when clicking on "Återställa"
+  const resetStatus = () => {
+    dispatch({ type: "RESET_STATUS" });
   };
 
   useEffect(() => {
@@ -205,7 +210,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     setIncome({});
     setIncomeTotal(0);
     resetChildren();
-    //set incomeTotal, familyTotal, expensesTotal to 0
+    resetStatus();
     //go back to Home view
   };
 
