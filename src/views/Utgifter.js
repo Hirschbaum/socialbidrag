@@ -5,6 +5,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
+import { formStyle } from "../Styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,12 +18,15 @@ const useStyles = makeStyles((theme) => ({
 
 const Utgifter = (props) => {
   const classes = useStyles();
+  const style = formStyle();
 
   return (
-    <Container>
+    <Container className={style.form_container}>
       <form className={classes.root} autoComplete="off">
         <div>
-          <Typography variant="h4">Utgifter</Typography>
+          <Typography variant="h4" className={style.form_title}>
+            Utgifter
+          </Typography>
           <TextField
             defaultValue={props.expenses.residence}
             id="residence"
@@ -68,7 +72,9 @@ const Utgifter = (props) => {
             type="number"
             variant="outlined"
           />
-          <Typography variant="body1">Summa: {props.expensesTotal}</Typography>
+          <Typography variant="body1" className={style.form_sum}>
+            Summa: {props.expensesTotal} kr
+          </Typography>
         </div>
       </form>
     </Container>

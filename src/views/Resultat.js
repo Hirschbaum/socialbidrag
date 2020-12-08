@@ -21,13 +21,13 @@ const Resultat = () => {
     <Container>
       <Box>
         <Typography variant="h4">Resultat</Typography>
-        <Typography variant="body1">Inkomster: {incomeTotal}</Typography>
+        <Typography variant="body1">Inkomster: {incomeTotal} kr</Typography>
         <Typography variant="body1">
           Familjeförhållande: {state.familyTotal}
         </Typography>
-        <Typography variant="body1">Utgifter: {expensesTotal}</Typography>
+        <Typography variant="body1">Utgifter: {expensesTotal} kr</Typography>
         <br />
-        <Typography variant="body1">Resultat: {result}</Typography>
+        <Typography variant="body1">Resultat: {result} kr</Typography>
       </Box>
       <Box>
         <Typography variant="body1">

@@ -130,8 +130,6 @@ export function reducer(state = initialState, { type, payload }) {
   newState.familyMembers = countFamilyMembers(newState);
   newState.familyTotal = calculateSum(newState);
 
-  //console.log(newState);
-
   return newState;
 }
 

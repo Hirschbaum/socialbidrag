@@ -211,7 +211,6 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     setIncomeTotal(0);
     resetChildren();
     resetStatus();
-    //go back to Home view
   };
 
   return (
@@ -232,7 +231,8 @@ export default function HorizontalLabelPositionBelowStepper(props) {
           {activeStep === steps.length ? (
             <Container>
               <Typography className={classes.instructions}>
-                All steps completed
+                Du är klart med beräkningen. Vänligen klicka på knappen för att
+                rensa bort dina uppgifter.
               </Typography>
               <Button
                 onClick={handleReset}

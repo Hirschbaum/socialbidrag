@@ -19,7 +19,7 @@ function Viktig() {
         </Typography>
         <Typography className={style.info_text} variant="body1">
           För att veta om du kan få ekonomiskt bistånd måste du kontakta
-          socialtjänsten i din kommun. Du har alltid rätt att ansöka om
+          Socialtjänsten i din kommun. Du har alltid rätt att ansöka om
           ekonomiskt bistånd och få din sak provad av Socialtjänsten.
         </Typography>
       </Box>

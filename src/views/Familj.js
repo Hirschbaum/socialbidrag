@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
+import { formStyle } from "../Styles";
 import { useContext } from "react";
 import FamilyForm from "../components/FamilyForm";
 import { FormContext } from "../context/FormContext";
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Familj = (props) => {
   const classes = useStyles();
+  const style = formStyle();
 
   const { state, dispatch } = useContext(FormContext);
   const handleStatus = (e) => {
@@ -43,8 +45,10 @@ const Familj = (props) => {
   };
 
   return (
-    <Container>
-      <Typography variant="h4">Familjeförhållande</Typography>
+    <Container className={style.form_container}>
+      <Typography variant="h4" className={style.form_title}>
+        Familjeförhållande
+      </Typography>
       <form className={classes.root} autoComplete="off">
         <FormControl component="fieldset">
           <FormLabel component="legend"></FormLabel>
@@ -67,13 +71,16 @@ const Familj = (props) => {
             />
           </RadioGroup>
         </FormControl>
+        <br />
 
-        <Typography variant="body1">
+        <Typography variant="body1" className={style.space_around}>
           Fyll i hur många barn bor hos dig:
         </Typography>
         <FamilyForm handleKids={handleKids} dispatch={dispatch} state={state} />
 
-        <Typography variant="body1">Summa: {state.familyTotal} </Typography>
+        <Typography variant="body1" className={style.form_sum}>
+          Summa: {state.familyTotal} kr
+        </Typography>
       </form>
     </Container>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, TextField, Typography } from "@material-ui/core";
-import { incomeStyle } from "../Styles";
+import { formStyle } from "../Styles";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -13,17 +13,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Inkomster = (props) => {
-  const style = incomeStyle();
+  const style = formStyle();
   const classes = useStyles();
 
-  //console.log(props.income, props.incomeTotal);
-
   return (
-    <Container>
-      <Typography className={style.income_title} variant="h4">
+    <Container className={style.form_Container}>
+      <Typography className={style.form_title} variant="h4">
         Börja med att skriva in alla dina inkomster nedan.
       </Typography>
-      <Typography variant="body2" className={style.income_text}>
+      <Typography variant="body2" className={style.form_text}>
         För att kunna veta om du kan ha behörighet till ekonomiskt bistånd ska
         dina inkomster jämföras med dina utkomster och med din
         familjeförhållande.
@@ -130,7 +128,10 @@ const Inkomster = (props) => {
             onChange={props.incomeHandler}
             variant="outlined"
           />
-          <Typography variant="body1"> Summa: {props.incomeTotal} </Typography>
+          <Typography variant="body1" className={style.form_sum}>
+            {" "}
+            Summa: {props.incomeTotal} kr
+          </Typography>
         </div>
       </form>
     </Container>
