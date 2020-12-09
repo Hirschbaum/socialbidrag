@@ -13,7 +13,7 @@ function Home(props) {
     <Container className={style.homeContainer} component="div">
       <Container className={style.headLine} component="div">
         <Typography variant="h5" className={style.hbg} component="h3">
-          HELSINGBORG
+          MITT HELSINGBORG
         </Typography>
       </Container>
       <Container component="div">
@@ -30,10 +30,13 @@ function Home(props) {
             ekonomisk rådgiving
           </Typography>
           <Typography variant="button" className={style.btn} component="button">
-            Mitt Helsingborg
+            förmyndare till barn
           </Typography>
           <Typography variant="button" className={style.btn} component="button">
             invandring och integration
+          </Typography>
+          <Typography variant="button" className={style.btn} component="button">
+            funktionsnedsättning
           </Typography>
           <Typography
             variant="button"

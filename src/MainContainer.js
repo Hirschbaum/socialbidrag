@@ -230,11 +230,12 @@ export default function HorizontalLabelPositionBelowStepper(props) {
         <Container>
           {activeStep === steps.length ? (
             <Container>
-              <Typography className={classes.instructions}>
+              <Typography className={style.reset_text}>
                 Du är klart med beräkningen. Vänligen klicka på knappen för att
                 rensa bort dina uppgifter.
               </Typography>
               <Button
+                className={style.reset_button}
                 onClick={handleReset}
                 color="secondary"
                 variant="contained"

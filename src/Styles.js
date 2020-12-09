@@ -9,16 +9,21 @@ export const homeStyle = makeStyles(() => ({
     margin: "0 auto",
   },
   headLine: {
-    height: "8vh",
+    height: "10vh",
     margin: "0 auto",
+    padding: "1em",
+    width: "50vw",
+    backgroundColor: "rgb(203, 0, 80)",
   },
   hbg: {
     letterSpacing: "0.06em",
-    marginTop: "1.5rem",
+    textAlign: "center",
+    lineHeight: "5vh",
+    color: "#fff",
   },
   questionBox: {
     textAlign: "center",
-    color: "rgb(174, 11, 5)",
+    //color: "rgb(203, 0, 80)",
     letterSpacing: "0.05em",
     fontWeight: "800",
     marginBottom: "1rem",
@@ -109,17 +114,26 @@ export const infoStyle = makeStyles(() => ({
 export const navStyle = makeStyles(() => ({
   next_button: {
     position: "absolute",
-    bottom: "10vh",
+    bottom: "6vh",
     left: "50vw",
   },
   back_button: {
     position: "absolute",
-    bottom: "10vh",
+    bottom: "6vh",
     left: "40vw",
+  },
+  reset_button: {
+    position: "absolute",
+    top: "45vh",
+    left: "45vw",
+  },
+  reset_text: {
+    textAlign: "center",
+    marginTop: "2em",
   },
 }));
 
-//------------- style for: Inkomster.js AND Familj.js AND Utgifter.js -----------------------------------------------------
+//------------- style for: Inkomster.js AND Familj.js AND Utgifter.js AND Resultat.js-----------------------------------------------------
 export const formStyle = makeStyles(() => ({
   form_title: {
     margin: "1rem 0",
@@ -128,8 +142,8 @@ export const formStyle = makeStyles(() => ({
     color: "rgb(174, 11, 5)",
   },
   form_text: {
-    margin: "1rem 2rem 2rem 1 rem",
-    width: "50vw",
+    margin: "1rem 2rem 0 1 rem",
+    fontSize: "1.2em",
   },
   form_container: {
     height: "80vh",
@@ -143,7 +157,7 @@ export const formStyle = makeStyles(() => ({
     color: "rgb(203, 0, 80)",
   },
   space_around: {
-    margin: "2em 0 1em",
+    margin: "1.5em 0 1.5em 0.35em",
   },
   form_totalsum: {
     fontWeight: "600",
@@ -153,6 +167,26 @@ export const formStyle = makeStyles(() => ({
     color: "rgb(203, 0, 80)",
   },
   form_links: {
-    margin: "0.3em",
+    margin: "0.3em 0.6em",
+  },
+  form_partsum: {
+    fontWeight: "600",
+    fontSize: "1.2em",
+    margin: "0.5em",
+    letterSpacing: "0.08",
+    color: "#000",
+  },
+  form_bold: {
+    fontWeight: "600",
+    margin: "0.3rem 0.6rem",
+  },
+  form_bold_title: {
+    fontWeight: "600",
+    margin: "0.6em",
+    color: "rgb(203, 0, 80)",
+  },
+  form_adress: {
+    margin: "0.1em 0 0.1em 0.6em",
+    fontSize: "1em",
   },
 }));

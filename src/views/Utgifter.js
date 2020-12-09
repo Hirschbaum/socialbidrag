@@ -22,11 +22,18 @@ const Utgifter = (props) => {
 
   return (
     <Container className={style.form_container}>
+      <Typography variant="h4" className={style.form_title}>
+        Utgifter
+      </Typography>
+      <Typography variant="body1" className={style.form_links}>
+        Ange hela hushållets utgifter per månad i respektive ruta. Avrunda till
+        hela kronor.
+      </Typography>
+      <Typography variant="body1" className={style.form_links}>
+        Om du inte anger några kostnader räknas de som noll (0).
+      </Typography>
       <form className={classes.root} autoComplete="off">
         <div>
-          <Typography variant="h4" className={style.form_title}>
-            Utgifter
-          </Typography>
           <TextField
             defaultValue={props.expenses.residence}
             id="residence"
