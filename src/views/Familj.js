@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
-import { formStyle } from "../Styles";
+import { formStyle } from "../Styles/Styles";
 import { useContext } from "react";
 import FamilyForm from "../components/FamilyForm";
 import { FormContext } from "../context/FormContext";

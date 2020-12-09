@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, TextField, Typography } from "@material-ui/core";
-import { formStyle } from "../Styles";
+import { formStyle } from "../Styles/Styles";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({

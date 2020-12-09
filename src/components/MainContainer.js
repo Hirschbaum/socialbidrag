@@ -14,20 +14,19 @@ import {
 } from "@material-ui/core";
 
 //---------- importing each view of the API:
-import Info from "./views/Info";
-import Viktig from "./views/Viktig";
-import Inkomster from "./views/Inkomster";
-import Familj from "./views/Familj";
-import Utgifter from "./views/Utgifter";
-import Resultat from "./views/Resultat";
-//import PositivResultLinks from "./views/PositivResultLinks";
+import Info from "../views/Info";
+import Viktig from "../views/Viktig";
+import Inkomster from "../views/Inkomster";
+import Familj from "../views/Familj";
+import Utgifter from "../views/Utgifter";
+import Resultat from "../views/Resultat";
 
 //----------- importing context
 
-import { FormContext } from "./context/FormContext";
+import { FormContext } from "../context/FormContext";
 
 //----------- instead of CSS:
-import { navStyle } from "./Styles";
+import { navStyle } from "../Styles/Styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -185,7 +184,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     dispatch({ type: "RESET_CHILDREN" });
   };
 
-  //----------- to reset the family status to "single" when clicking on "Återställa"
+  //----------- to reset the family status to "single" when clicking on "Återställa" (reset button)
   const resetStatus = () => {
     dispatch({ type: "RESET_STATUS" });
   };
@@ -202,6 +201,8 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     setActiveStep(activeStep - 1);
   };
 
+  //---------- reset all the states and context when clicking on "Återställa" (reset button)
+  const { setAppOn } = useContext(FormContext);
   const handleReset = () => {
     setActiveStep(0);
     setExpenses({});
@@ -211,6 +212,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     setIncomeTotal(0);
     resetChildren();
     resetStatus();
+    setAppOn(false);
   };
 
   return (
@@ -229,10 +231,12 @@ export default function HorizontalLabelPositionBelowStepper(props) {
       <Container>
         <Container>
           {activeStep === steps.length ? (
-            <Container>
+            <Container className={style.reset_div}>
               <Typography className={style.reset_text}>
-                Du är klart med beräkningen. Vänligen klicka på knappen för att
-                rensa bort dina uppgifter.
+                Du är klart med beräkningen.
+              </Typography>
+              <Typography className={style.reset_text}>
+                Vänligen klicka på knappen för att rensa bort dina uppgifter.
               </Typography>
               <Button
                 className={style.reset_button}

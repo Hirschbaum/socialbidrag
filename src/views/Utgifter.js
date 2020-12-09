@@ -5,7 +5,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { formStyle } from "../Styles";
+import { formStyle } from "../Styles/Styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {

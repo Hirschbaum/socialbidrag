@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Typography } from "@material-ui/core";
-import { infoStyle } from "../Styles";
+import { infoStyle } from "../Styles/Styles";
 
 // -----IF YOU UPDATE numbers, riksnormen: -----------------------------------------------------------
 //------------- Change the date (DD. month YYYY) in the text below, when riksnormen have been updated.

@@ -12,18 +12,15 @@ export const homeStyle = makeStyles(() => ({
     height: "10vh",
     margin: "0 auto",
     padding: "1em",
-    width: "50vw",
-    backgroundColor: "rgb(203, 0, 80)",
   },
   hbg: {
     letterSpacing: "0.06em",
     textAlign: "center",
     lineHeight: "5vh",
-    color: "#fff",
+    color: "rgb(203, 0, 80)",
   },
   questionBox: {
     textAlign: "center",
-    //color: "rgb(203, 0, 80)",
     letterSpacing: "0.05em",
     fontWeight: "800",
     marginBottom: "1rem",
@@ -67,13 +64,11 @@ export const homeStyle = makeStyles(() => ({
     textDecoration: "none",
     display: "inline-block",
     fontSize: "1.1em",
-    //letterSpacing: "0.025em",
     margin: "0.5rem",
   },
 }));
 
 //------------- Info.js ------------------------ the second page with info about how it works
-
 export const infoStyle = makeStyles(() => ({
   info_container: {
     height: "80vh",
@@ -129,6 +124,9 @@ export const navStyle = makeStyles(() => ({
   },
   reset_text: {
     textAlign: "center",
+    marginTop: "0.5em",
+  },
+  reset_div: {
     marginTop: "2em",
   },
 }));

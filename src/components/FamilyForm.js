@@ -3,8 +3,6 @@ import InputField from "./InputField";
 import { Box } from "@material-ui/core";
 
 const FamilyForm = ({ handleKids, state }) => {
-  console.log(state.kids[0].amount); //working but the value disappears from the input field when click NEXT
-  //add styling here later
   return (
     <Box>
       <InputField

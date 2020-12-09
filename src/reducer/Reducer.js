@@ -1,3 +1,6 @@
+//----------------------if necessary: UPDATE riksnormen in the reducer if there are new of them -----------------------------------------------------
+//---------------------if necessary: UPDATE the memberCosts, costForExtraMember, statusCost AND all of the costs in kids in the initialState --------
+//---------------------check also if the age of the kids are still relevant according to the new riksnormen -----------------------------------------
 //riksnorm 2020:
 const memberCosts = {
   1: 1010,

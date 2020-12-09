@@ -1,13 +1,12 @@
 import React from "react";
 import { Box, Container, Typography } from "@material-ui/core";
-import { homeStyle } from "../Styles";
+import { homeStyle } from "../Styles/Styles";
+import { useContext } from "react";
+import { FormContext } from "../context/FormContext";
 
 function Home(props) {
   const style = homeStyle();
-
-  const handleApi = () => {
-    props.setApiOn(true);
-  };
+  const { setAppOn } = useContext(FormContext);
 
   return (
     <Container className={style.homeContainer} component="div">
@@ -35,14 +34,11 @@ function Home(props) {
           <Typography variant="button" className={style.btn} component="button">
             invandring och integration
           </Typography>
-          <Typography variant="button" className={style.btn} component="button">
-            funktionsnedsättning
-          </Typography>
           <Typography
             variant="button"
             className={style.btn_main}
             component="button"
-            onClick={() => handleApi()}
+            onClick={() => setAppOn(true)}
           >
             ekonomiskt bistånd
           </Typography>
@@ -54,6 +50,9 @@ function Home(props) {
           </Typography>
           <Typography variant="button" className={style.btn} component="button">
             stöd till familj, barn, ungdom
+          </Typography>
+          <Typography variant="button" className={style.btn} component="button">
+            våld i nära relation
           </Typography>
           <Typography variant="button" className={style.btn} component="button">
             hyresrådgiving och hitta hem

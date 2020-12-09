@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
-import { formStyle } from "../Styles";
+import { formStyle } from "../Styles/Styles";
 
 const PositivSumResultLinks = () => {
   const style = formStyle();

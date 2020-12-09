@@ -3,7 +3,7 @@ import { FormContext } from "../context/FormContext";
 import { Box, Container, Typography } from "@material-ui/core";
 import PositivSumResultLinks from "../components/PositivSumResultLinks";
 import NegativSumResultLinks from "../components/NegativSumResultLinks";
-import { formStyle } from "../Styles";
+import { formStyle } from "../Styles/Styles";
 
 const Resultat = () => {
   const { incomeTotal } = useContext(FormContext);
@@ -16,6 +16,7 @@ const Resultat = () => {
   let resultPositivText = `Beräkningen visar att dina månadsinkomster är  ${Math.abs(
     result
   )} kr lägre än den nivå som kan ge rätt till försörjningsstöd. Det kan betyda att du får försörjningsstöd om du ansöker. Socialtjänsten gör en individuell bedömning och kan ta hänsyn till annat än ekonomiska faktorer. `;
+
   let resultNegativText = `Beräkningen visar att dina månadsinkomster är ${result} kr högre än den nivå som kan ge rätt till försörjningsstöd. Det kan betyda att du inte får försörjningsstöd om du ansöker. Socialtjänsten gör en individuell bedömning och kan ta hänsyn till annat än ekonomiska faktorer. `;
 
   const style = formStyle();
