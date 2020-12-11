@@ -285,7 +285,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
                   onClick={handleNext}
                   className={style.next_button}
                 >
-                  {activeStep === steps.length - 1 ? "Klart" : "Nästa"}
+                  {activeStep === steps.length - 1 ? "Avsluta" : "Nästa"}
                 </Button>
               </Container>
             </Container>
